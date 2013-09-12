@@ -150,7 +150,7 @@
                     appObject.userRating = [[lockup objectForKey:@"user_rating"] floatValue];
                     appObject.userRatingCount = [[lockup objectForKey:@"user_rating_count"] integerValue];
                     
-                    if (![mutableApps containsObject:appObject])
+                     if (![[[NSBundle mainBundle] bundleIdentifier] isEqualToString:appObject.bundleId] && ![mutableApps containsObject:appObject])
                     {
                         [mutableApps addObject:appObject];
                     }
