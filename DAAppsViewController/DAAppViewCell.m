@@ -239,13 +239,15 @@ static NSMutableDictionary *_iconCacheDictionary = nil;
             CGImageRelease(mask);
             CGImageRelease(maskedImageRef);
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_iconCacheDictionary setObject:iconImage forKey:iconURL];
-                if (self.appObject.iconURL == iconURL)
-                {
-                    self.iconView.image = iconImage;
-                }
-            });
+            if (iconImage !=nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_iconCacheDictionary setObject:iconImage forKey:iconURL];
+                    if (self.appObject.iconURL == iconURL)
+                    {
+                        self.iconView.image = iconImage;
+                    }
+                });
+            }
         });
 #if !OS_OBJECT_USE_OBJC
         dispatch_release(thread);
